@@ -33,6 +33,6 @@ app.use('/api', contactRoute)    //This is Contact route
 app.use('/api', authRoute)       //This is Auth route for both Login and signup
 app.use('/api', noteRoutes)      //This is note route for CRUD operation
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })
