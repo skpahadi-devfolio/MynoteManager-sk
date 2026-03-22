@@ -2,7 +2,7 @@
 
 export const contactform = async (formdata) => {
     try {
-        const response = await fetch("https://mynotemanager-skweb.netlify.app/api/contact", {
+        const response = await fetch("https://mynotemanager-sk.onrender.com/api/auth/contact", {
             method: "POST", headers: {
                 "Content-Type": "application/json",
             },

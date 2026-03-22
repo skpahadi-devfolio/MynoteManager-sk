@@ -5,11 +5,11 @@ const router = express.Router();
 
 
 //Login Router:-
-router.post('/login', Logincheck);
+router.post('/auth/login', Logincheck);
 
 
 //Signup Router:-
-router.post('/signup', Signupcheck);
+router.post('/auth/signup', Signupcheck);
 
 
 export default router;
