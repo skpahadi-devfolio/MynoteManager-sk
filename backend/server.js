@@ -7,7 +7,7 @@ import noteRoutes from "./routes/noteRoutes.js"
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 //dotenv:-
 dotenv.config();
@@ -34,5 +34,5 @@ app.use('/api', authRoute)       //This is Auth route for both Login and signup
 app.use('/api', noteRoutes)      //This is note route for CRUD operation
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port ${PORT}`)
 })
