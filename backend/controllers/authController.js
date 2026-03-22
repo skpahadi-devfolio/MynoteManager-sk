@@ -4,11 +4,11 @@ import bcrypt from "bcrypt";
 //AuthoController API for both Login and Signup :-
 
 //Api for Login:-
-export const Logincheck = async(req, res) => {
+export const Logincheck = async (req, res) => {
     try {
-        const{email, password} = req.body;
+        const { email, password } = req.body;
 
-        if(!email || !password){
+        if (!email || !password) {
             return res.status(400).json({
                 success: false,
                 message: "All Field are required"
@@ -16,8 +16,8 @@ export const Logincheck = async(req, res) => {
         }
 
         //user login check
-        const user = await User.findOne({email});
-        if(!user){
+        const user = await User.findOne({ email });
+        if (!user) {
             return res.status(400).json({
                 success: false,
                 message: "User Not Found"
@@ -26,7 +26,7 @@ export const Logincheck = async(req, res) => {
 
         //password check
         const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch){
+        if (!isMatch) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid Password"
@@ -36,11 +36,11 @@ export const Logincheck = async(req, res) => {
 
         //jwt token generate
         const token = jwt.sign(
-            {id: user._id},
+            { id: user._id },
             process.env.JWT_SECRET,
-            {expiresIn: "1d"}
+            { expiresIn: "1d" }
         )
-        
+
         return res.cookie("token", token, {
             httpOnly: true,
             secure: true,
@@ -66,10 +66,10 @@ export const Logincheck = async(req, res) => {
 
 
 //API For Signup:-
-export const Signupcheck = async(req, res) => {
+export const Signupcheck = async (req, res) => {
     try {
-        const{name, email, password, confirmpassword} = req.body;
-        if(!name || !email || !password || !confirmpassword){
+        const { name, email, password, confirmpassword } = req.body;
+        if (!name || !email || !password || !confirmpassword) {
             return res.status(400).json({
                 success: false,
                 message: "All Field are required"
@@ -77,7 +77,7 @@ export const Signupcheck = async(req, res) => {
         }
 
         //password match:-
-        if(password !== confirmpassword){
+        if (password !== confirmpassword) {
             return res.status(400).json({
                 success: false,
                 message: "Password not match with existing Password ! Try Again"
@@ -85,8 +85,8 @@ export const Signupcheck = async(req, res) => {
         }
 
         //userexits:-
-        const existUser = await User.findOne({email});
-        if(existUser){
+        const existUser = await User.findOne({ email });
+        if (existUser) {
             return res.status(400).json({
                 success: false,
                 message: "User already exists"
@@ -97,10 +97,24 @@ export const Signupcheck = async(req, res) => {
         //hash password:-
         const hashpassword = await bcrypt.hash(password, 15)
 
-       const user = await User.create({name, email, password: hashpassword});
+        const user = await User.create({ name, email, password: hashpassword });
 
-        return res.status(200).json({
+
+        //cookies generate:-
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1d" }
+        );
+
+        return res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 24 * 60 * 60 * 1000
+        }).status(200).json({
             success: true,
+            token,
             message: "Signup SuccessFully! Please Welcome to Note Manager App"
         })
     } catch (error) {
