@@ -18,6 +18,7 @@ export const Getnotes = async()=>{
 export const Addnotes = async(Adddata)=>{
     try {
         const token = localStorage.getItem("token");
+        console.log("TOKEN ADD:", token);
         const response = await fetch('https://mynotemanager-sk.onrender.com/api/addnotes', {method: "POST", headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify(Adddata)
         })
