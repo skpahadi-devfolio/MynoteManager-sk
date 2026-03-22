@@ -4,7 +4,7 @@
 //Fetch Call for Login Page:-
 export const Logincheck = async (logindata) => {
     try {
-        const response = await fetch("https://mynotemanager-sk.onrender.com/api/login", {
+        const response = await fetch("https://mynotemanager-skweb.netlify.app/api/auth/login", {
             method: "POST", headers: {
                 "Content-Type": "application/json",
             },
@@ -23,7 +23,7 @@ export const Logincheck = async (logindata) => {
 //Fetch API for Signup Page:-
 export const Signupcheck = async(signupdata) => {
     try {
-        const response = await fetch("https://mynotemanager-sk.onrender.com/api/signup", {
+        const response = await fetch("https://mynotemanager-skweb.netlify.app/api/auth/signup", {
             method: "POST", headers: {
                 "Content-Type": "application/json",
             },
