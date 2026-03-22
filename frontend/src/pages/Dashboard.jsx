@@ -29,7 +29,7 @@ const Dashboard = () => {
       try {
         // await delay(4)
         const res = await Getnotes()
-        setcard(res.data);
+        setcard(res?.notes || []);
       } catch (error) {
         toast.error("Sorry This time your note can't show")
       }
@@ -60,7 +60,7 @@ const Dashboard = () => {
 
       //referseh the notes
       const updated = await Getnotes()
-      setcard(updated.data)
+      setcard(updated?.notes || [])
       setnotes({title: "", notes: ""})
     } catch (error) {
       toast.error("Something went wrong to add note !")
@@ -74,7 +74,7 @@ const Dashboard = () => {
     toast.success("Note Deleted !")
 
     const updated = await Getnotes()
-    setcard(updated.data)
+    setcard(updated?.notes || [])
   }
 
   //Edit Note:-
@@ -111,9 +111,9 @@ const Dashboard = () => {
         </div>
 
          
-        <p className='text-3xl text-white text-center my-16'>{loading?(<p>Loading....</p>):card.length === 0?(<p>No Notes here</p>):(<p>Your Notes List</p>)}</p>
+        <p className='text-3xl text-white text-center my-16'>{loading?(<p>Loading....</p>):card?.length === 0?(<p>No Notes here</p>):(<p>Your Notes List</p>)}</p>
         <div className="notelist grid md:grid-cols-3 grid-cols-1 mx-auto items-center gap-6 px-20 pb-10 overflow-y-scroll h-[60vh]">
-          {card.map((note) => {
+          {card?.map((note) => {
             return <div key={note._id} className="relative mx-auto my-5 flex gap-5 flex-col bg-[#1F2937] max:w-[25vw] w-full min-h-[40vh] max-h-[30vh] text-white  hover:-translate-y-4 active:scale-95 transition-all hover:ease-in-out duration-700 cursor-pointer mb-20">
               <div className="card bg-slate-900 text-center p-2">Title:- {note.title}</div>
               <div className="card overflow-y-scrol text-center">{note.notes}</div>
