@@ -4,7 +4,8 @@
 //Get/All Notes  API:-
 export const Getnotes = async()=>{
     try {
-        const response = await fetch('https://mynotemanager-sk.onrender.com/api/notes', {method: "GET", credentials: "include"})
+        const token = localStorage.getItem("token");
+        const response = await fetch('https://mynotemanager-sk.onrender.com/api/notes', {method: "GET", headers:{Authorization: `Bearer ${token}`}})
         const result = await response.json()
         return result
     } catch (error) {
@@ -16,7 +17,8 @@ export const Getnotes = async()=>{
 //Create/Add note API:-
 export const Addnotes = async(Adddata)=>{
     try {
-        const response = await fetch('https://mynotemanager-sk.onrender.com/api/addnotes', {method: "POST", credentials: "include", headers: {"Content-Type": "application/json"},
+        const token = localStorage.getItem("token");
+        const response = await fetch('https://mynotemanager-sk.onrender.com/api/addnotes', {method: "POST", headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify(Adddata)
         })
         const result = await response.json()
@@ -29,7 +31,10 @@ export const Addnotes = async(Adddata)=>{
 //Edit note API:-
 export const Editnotes = async(id,editdata)=>{
     try {
-        const response = await fetch(`https://mynotemanager-sk.onrender.com/api/edit/${id}`, {method: "PUT", credentials: "include", headers: {"Content-Type": "application/json"},
+        const token = localStorage.getItem("token");
+        const response = await fetch(`https://mynotemanager-sk.onrender.com/api/edit/${id}`, {method: "PUT", headers: {"Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
             body: JSON.stringify(editdata)
         })
         const result = await response.json()
@@ -45,7 +50,8 @@ export const Editnotes = async(id,editdata)=>{
 //Delete note API:-
 export const Deletenotes = async(id)=>{
     try {
-        const response = await fetch(`https://mynotemanager-sk.onrender.com/api/delete/${id}`, {method: "DELETE", credentials: "include"})
+        const token = localStorage.getItem("token");
+        const response = await fetch(`https://mynotemanager-sk.onrender.com/api/delete/${id}`, {method: "DELETE", headers:{Authorization: `Bearer ${token}`}})
         const result = await response.json()
         return result
     } catch (error) {
