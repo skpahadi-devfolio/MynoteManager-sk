@@ -116,7 +116,7 @@ const Dashboard = () => {
           {card?.map((note) => {
             return <div key={note._id} className="relative mx-auto my-5 flex gap-5 flex-col bg-[#1F2937] max:w-[25vw] w-full min-h-[40vh] max-h-[30vh] text-white  hover:-translate-y-4 active:scale-95 transition-all hover:ease-in-out duration-700 cursor-pointer mb-20">
               <div className="card bg-slate-900 text-center p-2">Title:- {note.title}</div>
-              <div className="card overflow-y-scrol text-center">{note.notes}</div>
+              <div className="card overflow-y-scroll text-center">{note.notes}</div>
               <div className='absolute flex gap-16 text-2xl justify-center w-full bottom-0 bg-slate-950 p-4'>
                 <FaEdit onClick={() => { handleEdit(note) }} className='cursor-pointer transition-all duration-200 hover:scale-125 text-yellow-600 active:scale-75' />
                 <FaTrash onClick={() => { handleDelete(note._id) }} className='cursor-pointer transition-all duration-200 hover:scale-125 text-red-700 active:scale-75' />

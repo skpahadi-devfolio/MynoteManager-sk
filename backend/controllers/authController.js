@@ -94,9 +94,17 @@ export const Signupcheck = async(req, res) => {
 
        const user = await User.create({name, email, password: hashpassword});
 
+       //jwt token generate
+        const token = jwt.sign(
+            {id: user._id},
+            process.env.JWT_SECRET,
+            {expiresIn: "15h"}
+        )
+
         return res.status(200).json({
             success: true,
-            message: "Signup SuccessFully! Please Welcome to Note Manager App"
+            message: "Signup SuccessFully! Please Welcome to Note Manager App",
+            token
         })
     } catch (error) {
         return res.status(500).json({

@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000
 //dotenv:-
 dotenv.config();
 //accept different server to each other for comunication
-app.use(cors());
+app.use(cors({origin: 'https://mynotemanager-skweb.netlify.app',methods: ['GET','POST','PUT','DELETE'],allowedHeaders: ['Content-Type','Authorization']}));
 
 //http cookies for JWT:-
 // app.use(cookieParser());

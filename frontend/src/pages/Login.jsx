@@ -4,10 +4,11 @@ import Footer from '../components/Footer'
 import { Logincheck } from '../services/authservices'
 import { ToastContainer, toast } from 'react-toastify'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
+  const navigator = useNavigate();
   const [loading, setloading] = useState(false)
 
   const {
@@ -21,13 +22,15 @@ const Login = () => {
       setloading(true);
       const result = await Logincheck(data)
       if(result.success){
+        localStorage.setItem("token", result.token);
         toast.success(result.message);
+        navigator('/dashboard');
       }
       else{
         toast.error(result.message)
       }
     } catch (error) {
-      toast.success("Login Failed: ");
+      toast.error("Login Failed: ");
     }
     finally{
       setloading(false)
@@ -59,7 +62,7 @@ const Login = () => {
         {errors.password && <div className='text-red-600'>{errors.password.message}</div>}
 
         <button disabled={loading} className='bg-blue-900 w-full p-4 rounded-md focus:scale-105 focus:transition-all focus:duration-500 focus:ease-in-out focus:outline-none' type="submit">{loading?"Login in....":"Login"}</button>
-         <p className='text-white py-4 text-center flex justify-center items-center gap-3'>Do you want to Signup?<span className='underline text-blue-800'><NavLink to={"/signup"}>Logout</NavLink></span></p>
+         <p className='text-white py-4 text-center flex justify-center items-center gap-3'>Do you want to Signup?<span className='underline text-blue-800'><NavLink to={"/signup"}>Signup</NavLink></span></p>
       </form>
      </div>
       <Footer/>

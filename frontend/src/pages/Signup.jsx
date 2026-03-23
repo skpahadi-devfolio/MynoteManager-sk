@@ -23,6 +23,7 @@ const Signup = () => {
       setloading(true)
       const result = await Signupcheck(data)
       if (result.success) {
+        localStorage.setItem("token", result.token);
         toast.success(result.message)
         navigator('/dashboard')
       }
