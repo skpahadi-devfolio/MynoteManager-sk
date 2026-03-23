@@ -27,7 +27,7 @@ const Dashboard = () => {
     const fetchNotes = async()=>{
       setloading(true)
       try {
-        // await delay(4)
+        await delay(4)
         const res = await Getnotes()
         setcard(res?.data || []);
       } catch (error) {
@@ -55,7 +55,7 @@ const Dashboard = () => {
        
         const res = await Addnotes(notes)
         toast.success(res.message)
-        console.log(res)
+        // console.log(res)
       }
 
       //referseh the notes
@@ -111,12 +111,12 @@ const Dashboard = () => {
         </div>
 
          
-        <p className='text-3xl text-white text-center my-16'>{loading?(<p>Loading....</p>):card?.length === 0?(<p>No Notes here</p>):(<p>Your Notes List</p>)}</p>
-        <div className="notelist grid md:grid-cols-3 grid-cols-1 mx-auto items-center gap-6 px-20 pb-10 overflow-y-scroll h-[60vh]">
+        <div className='text-3xl text-white text-center my-16'>{loading?(<p>Loading....</p>):card?.length === 0?(<p>No Notes here</p>):(<p>Your Notes List</p>)}</div>
+        <div className="notelist grid md:grid-cols-3 grid-cols-1 mx-auto items-center gap-6 px-10 md:px-20 pb-10 overflow-y-scroll min-h-[60vh]">
           {card?.map((note) => {
             return <div key={note._id} className="relative mx-auto my-5 flex gap-5 flex-col bg-[#1F2937] max:w-[25vw] w-full min-h-[40vh] max-h-[30vh] text-white  hover:-translate-y-4 active:scale-95 transition-all hover:ease-in-out duration-700 cursor-pointer mb-20">
               <div className="card bg-slate-900 text-center p-2">Title:- {note.title}</div>
-              <div className="card overflow-y-scroll text-center">{note.notes}</div>
+              <div className="card overflow-y-scroll text-center mb-10">{note.notes}</div>
               <div className='absolute flex gap-16 text-2xl justify-center w-full bottom-0 bg-slate-950 p-4'>
                 <FaEdit onClick={() => { handleEdit(note) }} className='cursor-pointer transition-all duration-200 hover:scale-125 text-yellow-600 active:scale-75' />
                 <FaTrash onClick={() => { handleDelete(note._id) }} className='cursor-pointer transition-all duration-200 hover:scale-125 text-red-700 active:scale-75' />

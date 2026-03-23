@@ -103,8 +103,8 @@ export const Signupcheck = async(req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: "Signup SuccessFully! Please Welcome to Note Manager App",
-            token
+            token,
+            message: "Signup SuccessFully! Please Welcome to Note Manager App"
         })
     } catch (error) {
         return res.status(500).json({

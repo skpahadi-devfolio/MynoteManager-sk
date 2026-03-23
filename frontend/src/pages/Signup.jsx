@@ -22,10 +22,12 @@ const Signup = () => {
     try {
       setloading(true)
       const result = await Signupcheck(data)
+      console.log(result)
       if (result.success) {
         localStorage.setItem("token", result.token);
+        // console.log("TOKEN:", result.token);
         toast.success(result.message)
-        navigator('/dashboard')
+        navigator('/login')
       }
       else {
         toast.error(result.message)

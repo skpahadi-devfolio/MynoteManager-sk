@@ -24,6 +24,7 @@ const Login = () => {
       if(result.success){
         localStorage.setItem("token", result.token);
         toast.success(result.message);
+        console.log(result.token)
         navigator('/dashboard');
       }
       else{

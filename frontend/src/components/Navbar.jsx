@@ -1,7 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+//   const navigator = useNavigate()
+//   const handleLogout = () => {
+//   localStorage.removeItem("token");
+//   navigator('/login');
+// }
   return (
     <div>
       <nav className='bg-cyan-700 p-4 cursor-pointer'>
@@ -22,3 +28,7 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+
+// onClick={handleLogout}
