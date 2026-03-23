@@ -29,7 +29,7 @@ const Dashboard = () => {
       try {
         // await delay(4)
         const res = await Getnotes()
-        setcard(res?.notes || []);
+        setcard(res?.data || []);
       } catch (error) {
         toast.error("Sorry This time your note can't show")
       }
@@ -60,7 +60,7 @@ const Dashboard = () => {
 
       //referseh the notes
       const updated = await Getnotes()
-      setcard(updated?.notes || [])
+      setcard(updated?.data || [])
       setnotes({title: "", notes: ""})
     } catch (error) {
       toast.error("Something went wrong to add note !")
@@ -74,7 +74,7 @@ const Dashboard = () => {
     toast.success("Note Deleted !")
 
     const updated = await Getnotes()
-    setcard(updated?.notes || [])
+    setcard(updated?.data || [])
   }
 
   //Edit Note:-
