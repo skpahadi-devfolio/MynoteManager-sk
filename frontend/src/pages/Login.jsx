@@ -21,7 +21,7 @@ const Login = () => {
     try {
       setloading(true);
       const result = await Logincheck(data)
-      if(result.success){
+      if(result.success && result.token){
         localStorage.setItem("token", result.token);
         toast.success(result.message);
         console.log(result.token)

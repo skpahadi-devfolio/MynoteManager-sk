@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { NavLink } from 'react-router-dom'
+import Typeanimationtext from '../components/Typeanimationtext'
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
         bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div> */}
 
         <div className="welcome flex justify-center flex-col items-center my-28 gap-7">
-           <h1 className='md:text-6xl text-2xl font-bold text-white text-center'>Welcome To NoteManagerApp</h1>
+           <h1 className='md:text-4xl flex flex-col md:flex-row gap-2 text-2xl font-bold text-white text-center'>Welcome <span> <Typeanimationtext/></span></h1>
            <div className='text-center p-7'>
             <p className='md:text-2xl text-lg text-white font-semibold'>Here you can create your note for day to day routine life</p>
            <p className='md:text-2xl text-lg text-white font-semibold'>You just Enjoy Here with your own note for your digital notebook</p>

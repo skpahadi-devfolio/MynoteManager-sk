@@ -4,6 +4,8 @@ import Footer from '../components/Footer'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify'
 import { Addnotes, Deletenotes, Editnotes, Getnotes } from '../services/notesServices.js'
+import { useNavigate } from 'react-router-dom'
+import { isTokenValid } from '../utils/auth.js'
 
 
 const Dashboard = () => {
@@ -13,21 +15,33 @@ const Dashboard = () => {
   const [loading, setloading] = useState(true)
 
 
+  const navigate = useNavigate();
+
+
   //Loading function:-
-  const delay = async(d)=>{
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve();
-      }, d * 1000);
-    })
+  // const delay = async(d)=>{
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       resolve();
+  //     }, d * 1000);
+  //   })
+  // }
+   //authenctication check 
+   useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (!isTokenValid(token)) {
+    localStorage.removeItem("token");
+    navigate("/login");
+    return;
   }
-  
+}, []);
  //Get All Notes:-
   useEffect(() => {
     const fetchNotes = async()=>{
       setloading(true)
       try {
-        await delay(4)
+        // await delay(4)
         const res = await Getnotes()
         setcard(res?.data || []);
       } catch (error) {
