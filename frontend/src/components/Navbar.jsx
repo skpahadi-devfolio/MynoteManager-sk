@@ -37,9 +37,10 @@ const Navbar = () => {
           </div>
 
 
+        </ul>
           {/* for mobile responisve */}
           {MenuOpen && (
-            <div className="md:hidden flex flex-col gap-4 mt-4 by-cyan-800 p-4 rounded">
+            <div className="md:hidden bg-gray-800 flex flex-col justify-center items-center gap-2 mt-4  p-4 rounded transition-all ease-in-out duration-700">
               <NavLink onClick={togglemenu} to="/">Home</NavLink>
               <NavLink onClick={togglemenu} to="/about">About</NavLink>
               <NavLink onClick={togglemenu} to="/contact">Contact Us</NavLink>
@@ -49,7 +50,6 @@ const Navbar = () => {
               <NavLink onClick={togglemenu} to="/signup">Signup</NavLink>
             </div>
           )}
-        </ul>
       </nav>
     </div>
   )
