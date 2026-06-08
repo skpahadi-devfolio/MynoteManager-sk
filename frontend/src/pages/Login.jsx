@@ -53,7 +53,7 @@ const Login = () => {
           theme="dark"
         />
         <div className="absolute inset-0 -z-10 min-h-screen w-full items-center px-3 md:px-5 py-16 md:py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-     <div className="login mx-auto min-h-[40vh] w-[95vw] md:w-[35vw] p-2 my-16 bg-slate-950 rounded-xl ">
+     <div className="login mx-auto min-h-[40vh] w-[95vw] md:w-[35vw] p-2 my-24 bg-slate-950 rounded-xl ">
      <h2 className='text-2xl text-white font-bold text-center'> Welcome To Login Page</h2>
       <form onSubmit={handleSubmit(onSubmit)} className='flex justify-center items-center flex-col p-4' action="">
         <input className='bg-white w-full p-5 rounded-md focus:scale-105 focus:transition-all focus:duration-500 focus:ease-in-out'  type="email" placeholder='Enter your Email' {...register("email", { required: "Please Fill this Field" , minLength:{value: 3, message: "Minimum 3 Length required"}})}/> <br />

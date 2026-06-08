@@ -60,9 +60,9 @@ const Signup = () => {
         <div className="absolute bottom-0 left-0 right-0 top-0 
         bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div>
 
-        <div className="relative min-h-screen p-4 mb-20">
-          <div className="signup min-h-[30vh] w-full md:w-[35vw] p-7 py-3 my-5 bg-slate-950 rounded-xl">
-            <h2 className="text-2xl text-center text-white font-bold"> Welcome To Signup Page</h2>
+        <div className="relative min-h-screen p-4 mb-20 my-10">
+          <div className="signup min-h-[30vh] w-[92vw] md:w-[35vw] p-7 py-3 my-5 bg-slate-950 rounded-xl">
+            <h2 className="md:text-2xl text-lg text-center text-white font-bold"> Welcome To Signup Page</h2>
             <form onSubmit={handleSubmit(onSubmit)} className='flex justify-center items-center flex-col my-5' action="">
               <input className='bg-white w-full p-4 rounded-md focus:scale-105 focus:transition-all focus:duration-500 focus:ease-in-out' type="text" placeholder='Enter your Name' {...register("name", { required: "Please Fill this Field", minLength: { value: 3, message: "Minimum 3 Length is required" }, maxLength: { value: 15, message: "Maximum 15 Length is available" } })} />
               <br />
@@ -77,7 +77,11 @@ const Signup = () => {
               <br />
               {errors.confirmpassword && <div className='text-red-700'>{errors.confirmpassword.message}</div>}
               <button className='bg-slate-500 w-full p-4 rounded-md focus:scale-105 focus:transition-all focus:duration-500 focus:ease-in-out' type="submit">Signup</button>
-              <p className='text-white py-4 text-center flex justify-center items-center gap-3'><span className='px-1'><input type="checkbox" name="check" id="check" /></span>Already aave an account?<span className='underline text-blue-800'><NavLink to={"/login"}>Login</NavLink></span></p>
+              <div className='text-white pt-6 flex justify-center items-center gap-3 text-md w-full whitespace-nowrap'>
+                <input type="checkbox" name="check" id="check" />
+                <span className='whitespace-nowrap'>Already aave an account?</span>
+                <p className='underline text-blue-800 whitespace-nowrap'><NavLink to={"/login"}>Login</NavLink></p>
+            </div>
             </form>
           </div>
         </div>

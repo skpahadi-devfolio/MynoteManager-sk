@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className='bg-cyan-700 p-4 cursor-pointer'>
-        <ul className='flex justify-center md:gap-20 gap-4 items-center'>
+        <ul className='flex justify-center md:gap-20 gap-10 items-center'>
           <div className="logo font-bold text-2xl px-4"><NavLink to={"/"}>NoteManagerApp</NavLink></div>
 
           {/* humburger for mobile */}
